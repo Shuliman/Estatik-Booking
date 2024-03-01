@@ -19,17 +19,18 @@ function estatik_booking_metabox_callback($post) {
     $address = get_post_meta($post->ID, '_address', true);
 
     echo '<label for="start_date">' . __('Start Date', 'textdomain') . '</label>';
-    echo '<input type="text" id="start_date" name="start_date" value="' . esc_attr($start_date) . '" class="widefat">';
+    echo '<input type="text" id="start_date" name="start_date" value="' . esc_attr($start_date) . '" class="widefat datepicker">';
 
     echo '<label for="end_date">' . __('End Date', 'textdomain') . '</label>';
-    echo '<input type="text" id="end_date" name="end_date" value="' . esc_attr($end_date) . '" class="widefat">';
+    echo '<input type="text" id="end_date" name="end_date" value="' . esc_attr($end_date) . '" class="widefat datepicker">';
 
     echo '<label for="address">' . __('Address', 'textdomain') . '</label>';
     echo '<input type="text" id="address" name="address" value="' . esc_attr($address) . '" class="widefat">';
 }
 
 add_action('save_post', 'estatik_save_booking_metabox_data');
-function estatik_save_booking_metabox_data($post_id) {
+function estatik_save_booking_metabox_data($post_id)
+{
     if (!isset($_POST['estatik_booking_metabox_nonce']) || !wp_verify_nonce($_POST['estatik_booking_metabox_nonce'], 'estatik_booking_save_metabox_data')) {
         return;
     }
@@ -48,5 +49,15 @@ function estatik_save_booking_metabox_data($post_id) {
 
     if (isset($_POST['address'])) {
         update_post_meta($post_id, '_address', sanitize_text_field($_POST['address']));
+    }
+
+    if (isset($_POST['start_date'])) {
+        $start_date = strtotime($_POST['start_date']);
+        update_post_meta($post_id, '_start_date', $start_date);
+    }
+
+    if (isset($_POST['end_date'])) {
+        $end_date = strtotime($_POST['end_date']);
+        update_post_meta($post_id, '_end_date', $end_date);
     }
 }
