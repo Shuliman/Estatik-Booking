@@ -7,6 +7,8 @@ Version: 1.0
 Author: Shuliman
 */
 
+include(plugin_dir_path(__FILE__) . 'includes/booking-details-metabox.php');
+
 // Registration of the custom record type 'booking'
 function estatik_register_booking_cpt()
 {
@@ -31,7 +33,6 @@ register_activation_hook(__FILE__, 'estatik_bookings_activate');
 
 function estatik_bookings_deactivate()
 {
-    // Resetting overwrite rules
     flush_rewrite_rules();
 }
 
