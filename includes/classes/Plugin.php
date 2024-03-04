@@ -12,6 +12,7 @@ class Plugin
         new Booking_CPT();
         new Metabox();
         new EnqueueScripts();
+        new Template_Redirector();
     }
 
     public static function activate()

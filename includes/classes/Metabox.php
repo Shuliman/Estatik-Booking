@@ -24,18 +24,13 @@ class Metabox {
         $end_date = get_post_meta($post->ID, '_end_date', true);
         $address = get_post_meta($post->ID, '_address', true);
 
-        echo '<label for="start_date">' . __('Start Date', 'textdomain') . '</label>';
-        echo '<input type="text" id="start_date" name="start_date" value="' . esc_attr($start_date) . '" class="widefat datepicker">';
-
-        echo '<label for="end_date">' . __('End Date', 'textdomain') . '</label>';
-        echo '<input type="text" id="end_date" name="end_date" value="' . esc_attr($end_date) . '" class="widefat datepicker">';
-
-        echo '<label for="address">' . __('Address', 'textdomain') . '</label>';
-        echo '<input type="text" id="address" name="address" value="' . esc_attr($address) . '" class="widefat">';
+        include ESTATIK_BOOKINGS_PATH . 'templates/metabox-view.php';
     }
 
     public function save($post_id) {
-        if (!isset($_POST['estatik_booking_metabox_nonce']) || !wp_verify_nonce($_POST['estatik_booking_metabox_nonce'], 'estatik_booking_save_metabox_data')) {
+        error_log(print_r($_POST, true));
+        if (!isset($_POST['estatik_booking_metabox_nonce']) ||
+            !wp_verify_nonce($_POST['estatik_booking_metabox_nonce'], 'save')) {
             return;
         }
 
@@ -44,25 +39,20 @@ class Metabox {
         }
 
         if (isset($_POST['start_date'])) {
-            update_post_meta($post_id, '_start_date', sanitize_text_field($_POST['start_date']));
+            $start_date = sanitize_text_field($_POST['start_date']);
+            $start_date_timestamp = strtotime($start_date);
+            update_post_meta($post_id, '_start_date', $start_date_timestamp);
         }
 
         if (isset($_POST['end_date'])) {
-            update_post_meta($post_id, '_end_date', sanitize_text_field($_POST['end_date']));
+            $end_date = sanitize_text_field($_POST['end_date']);
+            $end_date_timestamp = strtotime($end_date);
+            update_post_meta($post_id, '_end_date', $end_date_timestamp);
         }
 
         if (isset($_POST['address'])) {
-            update_post_meta($post_id, '_address', sanitize_text_field($_POST['address']));
-        }
-
-        if (isset($_POST['start_date'])) {
-            $start_date_gmt = strtotime(get_gmt_from_date($_POST['start_date']));
-            update_post_meta($post_id, '_start_date', $start_date_gmt);
-        }
-
-        if (isset($_POST['end_date'])) {
-            $end_date_gmt = strtotime(get_gmt_from_date($_POST['end_date']));
-            update_post_meta($post_id, '_end_date', $end_date_gmt);
+            $address = sanitize_text_field($_POST['address']);
+            update_post_meta($post_id, '_address', $address);
         }
     }
 }
