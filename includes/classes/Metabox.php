@@ -24,6 +24,9 @@ class Metabox {
         $end_date = get_post_meta($post->ID, '_end_date', true);
         $address = get_post_meta($post->ID, '_address', true);
 
+        $start_date_value = $start_date ? date('j M Y H:i', $start_date) : '';
+        $end_date_value = $end_date ? date('j M Y H:i', $end_date) : '';
+
         include ESTATIK_BOOKINGS_PATH . 'templates/metabox-view.php';
     }
 
