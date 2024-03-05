@@ -11,4 +11,7 @@ defined('ABSPATH') or die('No script kiddies please!');
 
     <label for="address"><?php _e('Address', 'textdomain'); ?></label>
     <input type="text" id="address" name="address" value="<?php echo esc_attr($address); ?>" class="widefat">
+
+    <div id="booking-map" data-address="<?php echo esc_attr(get_post_meta(get_the_ID(), '_address', true)); ?>"></div>
+
 <?php
