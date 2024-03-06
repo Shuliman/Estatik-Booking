@@ -1,11 +1,11 @@
 window.initMap = function() {
-    var mapElement = document.getElementById('booking-map');
+    const mapElement = document.getElementById('booking-map');
     if (mapElement) {
-        var address = mapElement.getAttribute('data-address');
-        var geocoder = new google.maps.Geocoder();
+        const address = mapElement.getAttribute('data-address');
+        const geocoder = new google.maps.Geocoder();
         geocoder.geocode({'address': address}, function(results, status) {
             if (status === 'OK') {
-                var map = new google.maps.Map(mapElement, {
+                const map = new google.maps.Map(mapElement, {
                     zoom: 15,
                     center: results[0].geometry.location
                 });
@@ -14,7 +14,7 @@ window.initMap = function() {
                     position: results[0].geometry.location
                 });
             } else {
-                console.error('Google Maps не смог найти адрес из-за: ' + status);
+                console.error('Google Maps couldn\'t find the address because: ' + status);
             }
         });
     }
