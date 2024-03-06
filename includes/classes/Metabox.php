@@ -10,7 +10,7 @@ class Metabox {
     public function add() {
         add_meta_box(
             'booking_details',
-            __('Booking Details', 'textdomain'),
+            __('Booking Details', 'estatik-bookings'),
             array($this, 'callback'),
             'booking',
             'normal',

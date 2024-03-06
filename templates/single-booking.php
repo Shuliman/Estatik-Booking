@@ -22,11 +22,11 @@
                     ?>
                     <!-- Display Booking Details -->
                     <div class="booking-details">
-                        <h2><?php _e('Booking Details', 'textdomain'); ?></h2>
+                        <h2><?php _e('Booking Details', 'estatik-bookings'); ?></h2>
                         <ul>
-                            <li><strong><?php _e('Start Date:', 'textdomain'); ?></strong> <?php echo $start_date_formatted; ?></li>
-                            <li><strong><?php _e('Ending Date:', 'textdomain'); ?></strong> <?php echo $end_date_formatted; ?></li>
-                            <li><strong><?php _e('Address:', 'textdomain'); ?></strong> <?php echo esc_html(get_post_meta(get_the_ID(), '_address', true)); ?></li>
+                            <li><strong><?php _e('Start Date:', 'estatik-bookings'); ?></strong> <?php echo $start_date_formatted; ?></li>
+                            <li><strong><?php _e('Ending Date:', 'estatik-bookings'); ?></strong> <?php echo $end_date_formatted; ?></li>
+                            <li><strong><?php _e('Address:', 'estatik-bookings'); ?></strong> <?php echo esc_html(get_post_meta(get_the_ID(), '_address', true)); ?></li>
                         </ul>
                     </div>
                         <div id="booking-map" data-address="<?php echo esc_attr(get_post_meta(get_the_ID(), '_address', true)); ?>"></div>
