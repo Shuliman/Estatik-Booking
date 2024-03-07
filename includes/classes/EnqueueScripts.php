@@ -27,10 +27,17 @@ class EnqueueScripts {
     }
 
     private function enqueue_shared_scripts() {
-        wp_enqueue_style('estatik-bookings-style', plugin_dir_url(__FILE__) . '../../assets/css/estatik-bookings.css');
-        wp_enqueue_script('estatik-bookings-map', plugin_dir_url(__FILE__) . '../../assets/js/estatik-bookings-map.js', array('jquery'), null, true);
-        wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . GOOGLE_MAPS_API . '&callback=initMap', array(), null, true);
+        $style_version = filemtime(plugin_dir_path(__FILE__) . '../../assets/css/estatik-bookings.css');
+        $script_version = filemtime(plugin_dir_path(__FILE__) . '../../assets/js/estatik-bookings-map.js');
+
+        wp_enqueue_style('estatik-bookings-style', plugin_dir_url(__FILE__) . '../../assets/css/estatik-bookings.css', array(), $style_version);
+        wp_enqueue_script('estatik-bookings-map', plugin_dir_url(__FILE__) . '../../assets/js/estatik-bookings-map.js', array('jquery'), $script_version, true);
+
+        if (!empty(GOOGLE_MAPS_API)) {
+            wp_enqueue_script('google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . GOOGLE_MAPS_API . '&callback=initMap', array(), $script_version, true);
+        }
     }
+
 
     public function activate_datepicker() {
         ?>
