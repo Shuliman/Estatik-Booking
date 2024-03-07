@@ -31,9 +31,8 @@ class Metabox {
     }
 
     public function save($post_id) {
-        error_log(print_r($_POST, true));
-        if (!isset($_POST['estatik_booking_metabox_nonce']) ||
-            !wp_verify_nonce($_POST['estatik_booking_metabox_nonce'], 'save')) {
+        if (!isset($_POST['estatik_booking_metabox_nonce']) || !wp_verify_nonce($_POST['estatik_booking_metabox_nonce'], 'save')) {
+            error_log('Estatik Booking: Nonce check failed or not set');
             return;
         }
 
