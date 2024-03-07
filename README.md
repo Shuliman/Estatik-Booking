@@ -9,8 +9,12 @@ Follow these steps to install the plugin:
 1. Clone or download the plugin from the GitHub repository.
 2. Run `composer install` within the plugin directory to install PHP dependencies.
 3. Run `npm install` within the plugin directory to install any necessary Node.js packages.
-4. Upload the `estatik-bookings` folder to your WordPress `/wp-content/plugins/` directory.
-5. Activate the plugin through the 'Plugins' menu in WordPress.
+4. Add your Google Maps API key to your WordPress configuration file for map functionality. Insert the following line in your `wp-config.php` file:
+    ```php
+    define('GOOGLE_MAPS_API', 'your_google_maps_api_key');
+    ```
+5. Upload the `estatik-bookings` folder to your WordPress `/wp-content/plugins/` directory.
+6. Activate the plugin through the 'Plugins' menu in WordPress.
 
 ## Features
 - **Custom Post Type**: Adds a 'booking' post type to manage property bookings.
