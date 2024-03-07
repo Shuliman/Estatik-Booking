@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 <main id="site-content" role="main">
+    <div class="booking-page-container">
 
     <?php
     if (have_posts()) {
@@ -38,7 +39,7 @@
         echo '<div class="no-bookings">No bookings available.</div>';
     }
     ?>
-
+    </div>
 </main>
 
 <?php get_footer(); ?>
