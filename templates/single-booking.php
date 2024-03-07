@@ -34,6 +34,8 @@
             </article>
             <?php
         }
+    }else {
+        echo '<div class="no-bookings">No bookings available.</div>';
     }
     ?>
 
