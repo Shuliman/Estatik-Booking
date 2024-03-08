@@ -17,6 +17,8 @@ window.initMap = function() {
                 console.error('Google Maps couldn\'t find the address because: ' + status);
             }
         });
+    } else {
+        console.error('Failed to initialize Google Maps: Map element not found.');
     }
 };
 
