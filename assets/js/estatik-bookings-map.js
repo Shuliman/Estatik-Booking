@@ -14,7 +14,8 @@ window.initMap = function() {
                     position: results[0].geometry.location
                 });
             } else {
-                console.error('Google Maps couldn\'t find the address because: ' + status);
+                document.getElementById('booking-map').innerHTML = '<p>Google Maps could not load the address due to: ' + status + '</p>';
+                document.getElementById('booking-map').style.backgroundColor = '#f7f7f7';
             }
         });
     } else {
